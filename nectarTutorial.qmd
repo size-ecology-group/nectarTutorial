@@ -1,0 +1,57 @@
+---
+title: "Sipping Nectar: A Guide to Setting Up Your R Server on a Supercomputer"
+author: RF
+---
+
+# Introduction
+
+The goal of this tutorial is to show you how to setup your nectar instance for the first time. It is a simplified and summarise version of the resources found here: https://tutorials.rc.nectar.org.au
+If you wish to go beyond what offers this tutorial, do not hesitate to visit the nectar website.
+
+why?
+
+Requirements
+
+# How
+
+First, go to https://dashboard.rc.nectar.org.au/ and log in via AAF. Find your organisation (University of Tasmania) and connect to your dashboard.
+
+If you are connecting for the very first time, you will be allocated a project with limited resources (e.g. some cores and ram) for a limited time to get a taste of nectar. 
+
+To get more resources, you are going to need to fill an application
+
+## Application for resources
+
+check with a student what it looks like
+
+Once you have resources available in your project, you can start creating instances. If you have access to multiple projects, these can be selected in the top left corner in blue.
+
+
+## Creating a nectar instance
+
+In the sidebar at Project/Compute/Overview, you can check how much resources are available to create instances.
+
+![overview](img/overview.png)
+
+In there you can check how many instances you can create, as you can have more than one per project. How many VCPUs you can use (the number of cores) and much RAM they get access to (their memory) and many other details.
+
+### Security groups
+
+The first in creating your instance is creating security groups so you can connect to it!
+
+ssh
+
+https
+
+rstudio port 8787; check if needs to create or nor
+
+### new instance
+
+In the Project/Compute/Instance tab, you can see your current instances and create a new one.
+
+![instances](img/instances.png)
+
+### Linking storage
+
+## Other??
+
