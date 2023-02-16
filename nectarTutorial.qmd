@@ -1,11 +1,11 @@
 ---
-title: "Sipping Nectar: A Guide to Setting Up Your R Server on a Supercomputer"
+title: "Sipping Nectar: A Guide to Setting Up Your RStudio Server on a Supercomputer"
 author: RF
 ---
 
 # Introduction
 
-The goal of this tutorial is to show you how to setup your nectar instance for the first time. It is a simplified and summarise version of the resources found here: https://tutorials.rc.nectar.org.au
+The goal of this tutorial is to show you how to setup a Rstudio session on nectar. It is a simplified and summarised version of the resources found here: https://tutorials.rc.nectar.org.au
 If you wish to go beyond what offers this tutorial, do not hesitate to visit the nectar website.
 
 why?
@@ -18,7 +18,7 @@ First, go to https://dashboard.rc.nectar.org.au/ and log in via AAF. Find your o
 
 If you are connecting for the very first time, you will be allocated a project with limited resources (e.g. some cores and ram) for a limited time to get a taste of nectar. 
 
-To get more resources, you are going to need to fill an application
+To get more resources, you are going to need to fill an application or be added to an existing project.
 
 ## Application for resources
 
@@ -37,21 +37,98 @@ In there you can check how many instances you can create, as you can have more t
 
 ### Security groups
 
-The first in creating your instance is creating security groups so you can connect to it!
+Security groups add network access to your instances. We are going to configure two security groups for ease to use. 
+You can check existing security groups in Network/Security groups.
 
-ssh
+![Security groups](img/security.png)
 
-https
+We are going to create a security group to connect via ssh and one to connect straight to Rstudio via browser. If these groups already exist, ignore the following section.
 
-rstudio port 8787; check if needs to create or nor
+To create a new security group, click on the "create security group" button. You will be prompt to write down a name, and an optional description for the new security group. Then, after clicking "create security group" you will be able to edit the rules of the security group.
+
+For ssh, we are going to add an ingress rule that is already pre-setup. Just click on add new rule and select SSH in the first roll down menu.
+
+![ssh](img/ssh.png)
+
+The rest will be automatically filled so just click add and you will get a new security group to configure ssh connection.
+
+For Rstudio, we are going to add a custom ingress rule. Select "custom TCP rule" and add 8787 to the "port" field, as in the picture
+
+![rstudio](img/rstudio.png)
+
+This will allow to access Rstudio directly from a browser.
+
+
+### Key pairs
+
+To work with ssh, we need to setup a ssh key pair on your laptop, then upload it to nectar.
+
+To do so, open a terminal on your laptop and type:
+
+```{bash}
+ssh-keygen
+```
+
+You will be prompted to enter the path where to save the new key pair. The default folder where keys are usually stored is Users/yourname/.ssh/ but you can choose to save them anywhere. Keys cannot be recovered once lost.
+
+Once the key is saved, the private part of the key (no extension) will stay on your laptop and serve as identify yourself to the instance. The public part of the key (.pub) will be uploaded on nectar. To do so go to Compute/Key pair and then click import public key. Give it a name (that you can link back to the key on your computer) and import the public part of the key. Key type should be set to ssh.
+
+![keypair](img/keypair.png)
+
+Once a key is imported it will be available to select when creating a new instance.
+
+
 
 ### new instance
 
 In the Project/Compute/Instance tab, you can see your current instances and create a new one.
 
 ![instances](img/instances.png)
+![image](img/instance_detail.png)
+
+Source
+
+![source](img/source.png)
+
+Flavor
+
+![flavor](img/flavor.png)
+
+security group
+
+![security groups](img/instance_security.png)
+
+key pair
+
+![ssh key](img/keypair.png)
 
 ### Linking storage
+
+#### create your volume
+
+#### mount rd type storage with bash
+
+First, ask for permission of read/write for /rd1... on the IP
+Then set up in the command line
+
+```{bash}
+
+sudo vi /etc/fstab
+
+#in vim add
+data5.tpac.org.au:/rd1/gem/PUBLIC /rd/gem/public/ nfs nfsvers=3,rw,nosuid,hard,intr,bg,proto=tcp 0 0
+data5.tpac.org.au:/rd1/gem/PRIVATE /rd/gem/private/ nfs nfsvers=3,rw,nosuid,hard,intr,bg,proto=tcp 0 0
+
+sudo mkdir -p /rd/gem/private
+sudo mkdir -p /rd/gem/public
+
+# might need these packages
+sudo apt install nfs-common
+sudo apt install cifs-utils
+
+sudo mount -a
+
+```
 
 ## Other??
 
