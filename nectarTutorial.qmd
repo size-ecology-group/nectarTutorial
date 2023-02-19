@@ -37,26 +37,25 @@ In there you can check how many instances you can create, as you can have more t
 
 ### Security groups
 
-Security groups add network access to your instances. We are going to configure two security groups for ease to use. 
-You can check existing security groups in Network/Security groups.
+Security groups provide network access to your instances. We will configure two security groups for ease of use. You can view existing security groups in the Network/Security Groups section.
 
 ![Security groups](img/security.png)
 
-We are going to create a security group to connect via ssh and one to connect straight to Rstudio via browser. If these groups already exist, ignore the following section.
+We will create a security group to connect via SSH and another to connect directly to Rstudio via a browser. If these groups already exist, you can skip the following section.
 
-To create a new security group, click on the "create security group" button. You will be prompt to write down a name, and an optional description for the new security group. Then, after clicking "create security group" you will be able to edit the rules of the security group.
+To create a new security group, click on the "Create Security Group" button. You will be prompted to enter a name and an optional description for the new security group. After clicking "Create Security Group," you will be able to edit the group's rules.
 
-For ssh, we are going to add an ingress rule that is already pre-setup. Just click on add new rule and select SSH in the first roll down menu.
+For SSH, we will add an ingress rule that is already pre-configured. Click on "Add New Rule" and select SSH in the first dropdown menu.
 
 ![ssh](img/ssh.png)
 
-The rest will be automatically filled so just click add and you will get a new security group to configure ssh connection.
+The rest of the fields will be automatically filled, so just click "Add" to create a new security group for configuring the SSH connection.
 
-For Rstudio, we are going to add a custom ingress rule. Select "custom TCP rule" and add 8787 to the "port" field, as in the picture
+For Rstudio, we will add a custom ingress rule. Select "Custom TCP Rule" and add "8787" to the "Port" field, as shown in the picture below:
 
 ![rstudio](img/rstudio.png)
 
-This will allow to access Rstudio directly from a browser.
+This will allow you to access Rstudio directly from a browser.
 
 
 ### Key pairs
@@ -84,23 +83,56 @@ Once a key is imported it will be available to select when creating a new instan
 In the Project/Compute/Instance tab, you can see your current instances and create a new one.
 
 ![instances](img/instances.png)
+Click on "launch instance" and this menu will appear
+
 ![image](img/instance_detail.png)
 
-Source
+The project name is automatically filled. Write a name for your instance and select one of the Tasmanian servers in the availability zone. The "count" field is to create duplicates of your new instance.
+
+The next tab describe what operating system you wish to install on the new instance.
 
 ![source](img/source.png)
 
-Flavor
+Select the Nectar R Studio of the latest version in the list, as in the picture. This will automatically install linux with R and Rstudio on the intance without any setup needed on your part.
+
+Then the next tab describes how much resources you are going to allocate to the instance. This will depend on how much is available and how much you need to work with. An average laptop has 8 VCPUs and 16 GB of RAM for reference.
 
 ![flavor](img/flavor.png)
 
-security group
+Now it's time to use the security groups we created earlier. Allocate the available security groups as in the picture. We need to be able to connect via ssh and https (Rstudio group). The menu also offer to create an admin password but I am not sure this feature is working at the moment.
 
 ![security groups](img/instance_security.png)
 
-key pair
+Finally, since we want to use SSH we need to assign a public key to the instance. Select the one you are using from the "available" list or import one if you haven't done so.
 
-![ssh key](img/keypair.png)
+![ssh key](img/instance_key.png)
+
+You can ignore the last three tabs. Click Launch instance and you are done. The creation of the instance might take a while depending on its size.
+
+Once it's done, an IP address will be assigned to it. We are going to use this address to connect to it.
+
+### Connecting for the first time
+
+At the moment, you cannot connect to Rstudio via browser because there is no password setup for the admin account of the instance. Remember, every time the administrator account of every instance is going to be "ubuntu".
+
+We are going to connect via SSH first. To do so open a terminal (Mac/Linux) or use MobaXterm (GUI for Windows, https://mobaxterm.mobatek.net). Type
+
+```{bash}
+
+ssh -i path_to_private_key ubuntu@IP_adress
+```
+
+This will connect you remotely to the instance. Check that the path and IP address are correct if it doesn't work!
+
+Then to change a password type:
+
+```{bash}
+sudo passwd ubuntu
+```
+
+You will be prompted to enter the password twice. You are now working on linux so password don't appear on the screen will being typed, if you were wondering.
+
+Now that the password is set, open a browser and type your IP address followed by ":8787" without the quotes. This will send you to a Rstudio page offerint to enter your username and password. Remember your username in that case is ubuntu, unless you created more users while doing the previous step.
 
 ### Linking storage
 
