@@ -71,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 <p>The purpose of this tutorial is to guide you through the process of setting up an Rstudio session on Nectar. This tutorial provides a simplified and condensed version of the resources available at https://tutorials.rc.nectar.org.au. If you wish to explore more advanced features beyond what is covered in this tutorial, please feel free to visit the Nectar website.</p>
 <p>There are several benefits to using a remote Rstudio server. First, it allows for increased flexibility, as you can access your R environment from anywhere with an internet connection. This means that you can work on projects from home, the office, or on the go. Second, a remote server can be much more powerful than a local machine, as it can leverage the resources of the cloud to handle complex analyses and large datasets. Finally, it can be more secure, as the server can be configured with specific security measures to protect your data.</p>
 </section>
-<section id="navigating-nectar-in-x-steps" class="level1">
-<h1>Navigating Nectar in X Steps</h1>
+<section id="navigating-nectar-in-5-steps" class="level1">
+<h1>Navigating Nectar in 5 Steps</h1>
 <p>To get started, go to https://dashboard.rc.nectar.org.au/ and log in via AAF. Next, locate your organization (in this case, the University of Tasmania) and connect to your dashboard.</p>
 <p>If you are connecting to Nectar for the first time, you will be allocated a project with limited resources (e.g., a few VCPUs and RAM) for a limited time, to help you get started.</p>
 <p>If you need more resources, you will need to apply for them by submitting an application or being added to an existing project. Keep in mind that approval of resource requests may take some time, depending on the volume of applications being processed. Once you have access to your resources, you can proceed with setting up your Rstudio session using the instructions provided in this tutorial.</p>
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/overview.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">overview</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Overview</figcaption><p></p>
 </figure>
 </div>
 <p>The overview section is also useful for checking other details related to your project, such as the amount of storage available or networks in use. Keep in mind that the information displayed in the overview may vary depending on the type and size of your project, so it’s important to review this section carefully before launching your instance to ensure you have the resources you need. You can use this information to determine how many instances you can create and what size they should be to best fit your needs.</p>
@@ -106,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/ssh.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">ssh</figcaption><p></p>
+<p></p><figcaption class="figure-caption">SSH security group</figcaption><p></p>
 </figure>
 </div>
 <p>The rest of the fields will be automatically filled, so just click “Add” to create a new security group for configuring the SSH connection.</p>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/rstudio.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">rstudio</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Custom Rstudio security group</figcaption><p></p>
 </figure>
 </div>
 <p>This will allow you to access Rstudio directly from a browser.</p>
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/keypair.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">keypair</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Public key import</figcaption><p></p>
 </figure>
 </div>
 <ol start="4" type="1">
@@ -144,66 +144,65 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="creating-an-instance" class="level2">
 <h2 class="anchored" data-anchor-id="creating-an-instance">Creating an instance</h2>
-<p>In the Project/Compute/Instance tab, you can see your current instances and create a new one.</p>
-<p><img src="img/instances.png" class="img-fluid" alt="instances"> Click on “launch instance” and this menu will appear</p>
+<p>In the Project/Compute/Instance tab, you can view your current instances and create a new one.</p>
+<p><img src="img/instances.png" class="img-fluid" alt="Launching a new instance"> To create a new instance, click on the “launch instance” button. This will bring up a new menu, as shown below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/instance_detail.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">image</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Details</figcaption><p></p>
 </figure>
 </div>
-<p>The project name is automatically filled. Write a name for your instance and select one of the Tasmanian servers in the availability zone. The “count” field is to create duplicates of your new instance.</p>
-<p>The next tab describe what operating system you wish to install on the new instance.</p>
+<p>The project name will be automatically filled in. Give your instance a name and select one of the Tasmanian servers in the availability zone. Use the “count” field if you need to create multiple instances.</p>
+<p>Next, select the operating system you want to install on the new instance.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/source.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">source</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Source</figcaption><p></p>
 </figure>
 </div>
-<p>Select the Nectar R Studio of the latest version in the list, as in the picture. This will automatically install linux with R and Rstudio on the intance without any setup needed on your part.</p>
-<p>Then the next tab describes how much resources you are going to allocate to the instance. This will depend on how much is available and how much you need to work with. An average laptop has 8 VCPUs and 16 GB of RAM for reference.</p>
+<p>In our case, we want the latest version of the Nectar R Studio in the list, as shown in the picture. This will automatically install Linux with R and RStudio on the instance without requiring any setup on your part.</p>
+<p>The next step is to allocate the resources you want for the instance. This will depend on how much is available and how much you need to work with. For reference, an average laptop has 8 VCPUs and 16 GB of RAM.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/flavor.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">flavor</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Flavor</figcaption><p></p>
 </figure>
 </div>
-<p>Now it’s time to use the security groups we created earlier. Allocate the available security groups as in the picture. We need to be able to connect via ssh and https (Rstudio group). The menu also offer to create an admin password but I am not sure this feature is working at the moment.</p>
+<p>Next, use the security groups we created earlier. Allocate the available security groups as shown in the picture. We need to be able to connect via SSH and HTTPS (RStudio group). You can also create an admin password, although this feature may not be currently working.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/instance_security.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">security groups</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Security groups</figcaption><p></p>
 </figure>
 </div>
-<p>Finally, since we want to use SSH we need to assign a public key to the instance. Select the one you are using from the “available” list or import one if you haven’t done so.</p>
+<p>Finally, since we want to use SSH, we need to assign a public key to the instance. Select the key you are using from the “available” list, or import one if you haven’t already.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/instance_key.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">ssh key</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Key Pair</figcaption><p></p>
 </figure>
 </div>
-<p>You can ignore the last three tabs. Click Launch instance and you are done. The creation of the instance might take a while depending on its size.</p>
-<p>Once it’s done, an IP address will be assigned to it. We are going to use this address to connect to it.</p>
-<section id="connecting-for-the-first-time" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-for-the-first-time">Connecting for the first time</h3>
-<p>At the moment, you cannot connect to Rstudio via browser because there is no password setup for the admin account of the instance. Remember, every time the administrator account of every instance is going to be “ubuntu”.</p>
-<p>We are going to connect via SSH first. To do so open a terminal (Mac/Linux) or use MobaXterm (GUI for Windows, https://mobaxterm.mobatek.net). Type</p>
-<pre class="{bash}"><code>
-ssh -i path_to_private_key ubuntu@IP_adress</code></pre>
-<p>This will connect you remotely to the instance. Check that the path and IP address are correct if it doesn’t work!</p>
-<p>Then to change a password type:</p>
+<p>You can ignore the last three tabs. Click “Launch instance” to create your new instance. The creation process may take a while, depending on the instance’s size.</p>
+<p>Once the instance is created, an IP address will be assigned to it. This IP address will be used to connect to the instance.”</p>
+</section>
+<section id="connecting-for-the-first-time" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-for-the-first-time">Connecting for the first time</h2>
+<p>To access the newly created RStudio server, we first need to connect to the instance via SSH since there is no password set up for the admin account. You can open a terminal on your laptop (Mac/Linux) or use MobaXterm (GUI for Windows, https://mobaxterm.mobatek.net). In the terminal, type the following command, replacing “path_to_private_key” with the actual path to the private key and “IP_address” with the instance’s IP address:</p>
+<pre class="{bash}"><code>ssh -i path_to_private_key ubuntu@IP_adress</code></pre>
+<p>If the command is successful, you will be remotely connected to the instance. If not, double-check that the path and IP address are correct. After successfully connecting, change the password by typing the following command and following the prompts:</p>
 <pre class="{bash}"><code>sudo passwd ubuntu</code></pre>
-<p>You will be prompted to enter the password twice. You are now working on linux so password don’t appear on the screen will being typed, if you were wondering.</p>
-<p>Now that the password is set, open a browser and type your IP address followed by “:8787” without the quotes. This will send you to a Rstudio page offerint to enter your username and password. Remember your username in that case is ubuntu, unless you created more users while doing the previous step.</p>
+<p>Please note that passwords do not appear on the screen as you type them in Linux.</p>
+<p>With the password now set, open a browser and type your instance’s IP address followed by “:8787” (without quotes) in the address bar. This will take you to an RStudio login page where you will be prompted to enter your username and password. The username will be “ubuntu” unless you created more users while setting up the instance.</p>
 </section>
-<section id="linking-storage" class="level3">
-<h3 class="anchored" data-anchor-id="linking-storage">Linking storage</h3>
-<section id="create-your-volume" class="level4">
-<h4 class="anchored" data-anchor-id="create-your-volume">create your volume</h4>
+<section id="linking-storage" class="level2">
+<h2 class="anchored" data-anchor-id="linking-storage">Linking storage</h2>
+<section id="create-your-volume" class="level3">
+<h3 class="anchored" data-anchor-id="create-your-volume">create your volume</h3>
 </section>
-<section id="mount-rd-type-storage-with-bash" class="level4">
-<h4 class="anchored" data-anchor-id="mount-rd-type-storage-with-bash">mount rd type storage with bash</h4>
-<p>First, ask for permission of read/write for /rd1… on the IP Then set up in the command line</p>
+<section id="mount-rd-type-storage" class="level3">
+<h3 class="anchored" data-anchor-id="mount-rd-type-storage">Mount rd type storage</h3>
+<p>This is an example on how I mount /rd containing the FishMIP data on my instances.</p>
+<p>First, ask for permission of read/write for /rd1… on the IP to Geli. Then write in the command line:</p>
 <pre class="{bash}"><code>
 sudo vi /etc/fstab
 
@@ -211,6 +210,7 @@ sudo vi /etc/fstab
 data5.tpac.org.au:/rd1/gem/PUBLIC /rd/gem/public/ nfs nfsvers=3,rw,nosuid,hard,intr,bg,proto=tcp 0 0
 data5.tpac.org.au:/rd1/gem/PRIVATE /rd/gem/private/ nfs nfsvers=3,rw,nosuid,hard,intr,bg,proto=tcp 0 0
 
+# create the folders where the mount is going to happen
 sudo mkdir -p /rd/gem/private
 sudo mkdir -p /rd/gem/public
 
@@ -218,9 +218,9 @@ sudo mkdir -p /rd/gem/public
 sudo apt install nfs-common
 sudo apt install cifs-utils
 
+# mount
 sudo mount -a
 </code></pre>
-</section>
 </section>
 </section>
 <section id="other" class="level2">
