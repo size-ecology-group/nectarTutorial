@@ -1,6 +1,10 @@
 ---
 title: "Sipping Nectar: A Guide to Setting Up Your RStudio Server on a Supercomputer"
 author: RF
+format:
+  html:
+    toc: true
+    toc_depht: 4
 ---
 
 # Introduction
@@ -161,5 +165,5 @@ sudo mount -a
 
 ```
 
-## Other??
+# Further additions
 
